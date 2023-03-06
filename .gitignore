@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.sqlite
+*.sqlite3
+
+.DS_Store
+
+media/
+staticfiles/
+.idea
+.ipynb_checkpoints/
+.vscode
+*.cast
+
+/dist
+node_modules
