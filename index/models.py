@@ -2,14 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
-# Review
-class review_person(models.Model):
-    person = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField(max_length=150)
-    date = models.DateTimeField(auto_now_add=True)
-
-
 # Produto
 class product(models.Model):
     choices_status = (
@@ -24,9 +16,19 @@ class product(models.Model):
     description = models.TextField(max_length=250, blank=False)
     observation = models.TextField(max_length=150, blank=False)
     price = models.FloatField(blank=False)
-    review = models.ManyToManyField(review_person)
     image = models.ImageField(upload_to="image/", blank=False)
 
     def __str__(self):
         return self.name
+    
+
+# Review
+class review_person(models.Model):
+    person = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_review = models.ForeignKey(product, on_delete=models.CASCADE, default="")
+    text = models.TextField(max_length=150, blank=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.person.get_username().upper()} / {self.product_review} "
 
