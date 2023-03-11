@@ -9,6 +9,8 @@ class product(models.Model):
         ('Beleza', 'Beleza'),
         ('Acessórios', 'Acessórios'),
         ('Roupas', 'Roupas'),
+        ('Fantasias', 'Fantasias'),
+        ('Computador', 'Computador'),
 
     )
     name = models.CharField(max_length=50, blank=False)
@@ -16,6 +18,7 @@ class product(models.Model):
     description = models.TextField(max_length=250, blank=False)
     observation = models.TextField(max_length=150, blank=False)
     price = models.FloatField(blank=False)
+    stock = models.IntegerField(blank=False, default='0')
     image = models.ImageField(upload_to="image/", blank=False)
 
     def __str__(self):
