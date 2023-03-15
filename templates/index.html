@@ -325,12 +325,9 @@
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
 
-                            {% if products.review_person.all.count > 0 %}
-                                <small>({{ products.review_person.all.count }})</small>
-                            {% else %}
-                                <small>(0 reviews)</small>
-                            {% endif %}
+                            <small>({{ products.review_person_set.all | length }})</small>
                             
+               
                             
                         </div>
                     </div>
