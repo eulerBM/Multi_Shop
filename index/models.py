@@ -20,6 +20,7 @@ class product(models.Model):
     price = models.FloatField(blank=False)
     stock = models.IntegerField(blank=False, default='0')
     image = models.ImageField(upload_to="image/", blank=False)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

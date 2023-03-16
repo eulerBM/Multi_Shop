@@ -10,6 +10,9 @@ urlpatterns = [
     #Index
     path('', include('index.urls')),
 
+    #Email
+    path("email/", include('email_send.urls')),
+
     #Cart
     path('cart', include('cart.urls')),
 
