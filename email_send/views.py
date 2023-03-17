@@ -1,17 +1,28 @@
-from django.shortcuts import render
-from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.conf import settings
 
 def email_newsletter(request):
 
     if request.method == 'GET':
 
-        send_mail(
-        'CADASTRO REALIZADO COM SUCESSO',
-        'Voce ira receber noticias sobre descontos, promoção e cupoms parabéns.',
-        'eullerborgesdamotta155@gmail.com',
-        ['enzelo2002@gmail.com',],
-        )
+        email_user = request.GET.get('email_user')
+        print(email_user)
 
-    return render (request, 'index.html')
+        html_content = render_to_string('email_html/newsletter.html')
+        text_content = strip_tags(html_content)
+
+        Email = EmailMultiAlternatives(
+        'Teste de email - EULER',
+        text_content,
+        settings.EMAIL_HOST_USER,
+        [str(email_user),],
+        )
+        Email.attach_alternative(html_content, 'text/html')
+        Email.send()
+
+    return redirect('index')
 
 

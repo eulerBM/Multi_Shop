@@ -488,9 +488,10 @@
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
                         <p>Receba descontos e novidades direto no e-mail</p>
 
-                        <form action="{% url 'newsletter' %}">
+                        <form action="{% url 'newsletter' %}" method='GET'>
+                            {% csrf_token %}  
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Seu Email ">
+                                <input type="text" class="form-control" placeholder="Seu Email " name='email_user'>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary">Cadastrar</button>
                                 </div>
