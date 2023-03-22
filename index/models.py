@@ -36,3 +36,11 @@ class review_person(models.Model):
     def __str__(self):
         return f"{self.person.get_username().upper()} / {self.product_review} "
 
+
+#Carrinho de compras
+class carrinho(models.Model):
+    car_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    car_product = models.ManyToManyField(product)
+
+    def __str__(self):
+        return f"Carrinho de {self.car_user}"

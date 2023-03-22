@@ -51,11 +51,12 @@
                             {% if request.user.is_authenticated %}
 
                             <button class="dropdown-item" type="button">Olá, {{ request.user }}</button>
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_logout' %}">Sair</button></a>
 
                             {% else %}
-
-                            <button class="dropdown-item" type="button">Entrar</button>
-                            <button class="dropdown-item" type="button">Escrever-se</button>
+                                
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_login' %}">Entrar</button></a>
+                            <button class="dropdown-item" type="button"> <a href="{% url 'account_signup' %}">Escrever-se</button></a>
 
                             {% endif %}
                             
@@ -98,7 +99,9 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+
+                <form method='GET' >
+                    {% csrf_token %}
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Pesquisar produtos">
                         <div class="input-group-append">
@@ -108,6 +111,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">Atendimento ao Cliente</p>
@@ -168,7 +172,7 @@
                             </a>
                             <a href="" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"> {{ car_filter }} </span>
                             </a>
                         </div>
                     </div>
@@ -317,7 +321,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ products.image.url }}" alt="" style="width: 40%; height: 15em;">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'add_car' products.id %}"><i class="fa fa-shopping-cart" ></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
