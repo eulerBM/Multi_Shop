@@ -7,6 +7,9 @@ urlpatterns = [
     #Admin
     path('admin/', admin.site.urls),
 
+    #Allauth
+    path('accounts/', include('allauth.urls')),
+
     #Index
     path('', include('index.urls')),
 
