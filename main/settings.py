@@ -43,10 +43,6 @@ INSTALLED_APPS = [
     'checkout',
     'cart',
     'email_send',
-
-
-
-
     
 ]
 
@@ -179,3 +175,15 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Mensagens
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }

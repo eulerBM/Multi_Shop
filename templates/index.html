@@ -28,9 +28,32 @@
     <link rel="shortcut icon" href="https://em-content.zobj.net/thumbs/120/apple/325/teddy-bear_1f9f8.png" type="image/x-icon">
     <!-- Customized Bootstrap Stylesheet -->
     <link href=" {% static 'css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'css/index.css' %}" rel="stylesheet">
+
 </head>
 
 <body>
+
+    
+    <div class="mensa">
+        {% for message in messages %}
+            <div class="container-fluid p-0">
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="True">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+
+
+
+
+
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5">
@@ -314,6 +337,10 @@
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produtos em destaque</span></h2>
         <div class="row px-xl-5">
 
+
+            
+
+
         {% for products in product %}
 
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">          
@@ -399,7 +426,12 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ product_recens.image.url }}" alt="" style="width: 40%; height: 15em;">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+
+                            
+                               
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'add_car' product_recens.id %}"><i class="fa fa-shopping-cart"></i></a>
+                            
+
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>

@@ -20,6 +20,7 @@ class product(models.Model):
     price = models.FloatField(blank=False)
     stock = models.IntegerField(blank=False, default='0')
     image = models.ImageField(upload_to="image/", blank=False)
+    likes = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True )
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -40,7 +41,9 @@ class review_person(models.Model):
 #Carrinho de compras
 class carrinho(models.Model):
     car_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    car_product = models.ManyToManyField(product)
+    car_product = models.ManyToManyField(product, blank=True, null=True )
 
     def __str__(self):
         return f"Carrinho de {self.car_user}"
+    
+

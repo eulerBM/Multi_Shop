@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from index.models import product, carrinho, User
+from index.models import product, carrinho
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET
+from django.contrib import messages 
 
 # Pagina Inicial
 def index(request):
@@ -10,11 +11,13 @@ def index(request):
     car_filter = carrinho.objects.filter(id=request.user.id)
 
     try:
-        car_filter = carrinho.objects.get(id=request.user.id)
+        car_filter = carrinho.objects.get(car_user=request.user.id)
         carrinho_filter = car_filter.car_product.all().count()
 
     except:
         carrinho_filter = int(0)
+    
+    
          
     context = {
 
@@ -31,13 +34,29 @@ def index(request):
 @require_GET
 @login_required
 def add_car (request, id):
-    product_get = product.objects.get(id=id)
 
-    carrinho_get = carrinho.objects.get(car_user=request.user)
+    try:
+        product_get = product.objects.get(id=id)
 
-    carrinho_get.car_product.add(product_get)
+        carrinho_get = carrinho.objects.get(car_user=request.user)
     
-    return redirect ('index')
-    
+    except:
+        messages.error(request, "Ocorreu um erro" )
+
+    else:
+
+        if carrinho.objects.filter(car_user=request.user, car_product=product_get):
+            messages.warning(request, f"{product_get} ja esta no carrinho!" )
+
+        else:
+            carrinho_get.car_product.add(product_get)
+            messages.success(request, f"{product_get}, adicionado com sucesso ao carrinho" )     
+
+    finally:
+        return redirect ('index')
+
+
+def like_product(request, id):
+    pass
 
 
