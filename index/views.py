@@ -8,7 +8,7 @@ from django.contrib import messages
 def index(request):
     procutc_iten = product.objects.all()[:8]
     procutc_recent = product.objects.order_by('-date')[:8]
-    car_filter = carrinho.objects.filter(id=request.user.id)
+    like_filter = product.objects.filter(likes=request.user.id).count()
 
     try:
         car_filter = carrinho.objects.get(car_user=request.user.id)
@@ -24,6 +24,7 @@ def index(request):
         'product': procutc_iten,
         'product_recen': procutc_recent,
         'car_filter': carrinho_filter,
+        'like': like_filter,
             
     }
  
@@ -56,7 +57,30 @@ def add_car (request, id):
         return redirect ('index')
 
 
+@require_GET
+@login_required
 def like_product(request, id):
-    pass
+
+    try:
+        product_get = product.objects.get(id=id)
+
+    except:
+        messages.error(request, "Ocorreu um erro" )
+
+    else:
+        if product_get.likes == request.user:
+            product_get.likes = None
+            product_get.save()    
+            messages.info(request, f" Voce desfez o like no {product_get}" )
+
+        else:
+            product_get.likes = request.user
+            product_get.save()
+            messages.success(request, f"Like no produto {product_get}" )     
+
+    finally:
+        return redirect ('index')
+        
+
 
 

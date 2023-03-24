@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load avatar_tags %}
 <html lang="pt-br">
 
 <head>
@@ -24,6 +25,9 @@
     <link href=" {% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="shortcut icon" href="https://em-content.zobj.net/thumbs/120/apple/325/teddy-bear_1f9f8.png" type="image/x-icon">
+
+ 
+
 
     <!-- Customized Bootstrap Stylesheet -->
     
@@ -223,7 +227,7 @@
 
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>Product Name Goes Here</h3>
+                    <h3>{{ products.name }}</h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
                             <small class="fas fa-star"></small>
@@ -234,10 +238,8 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                    <h3 class="font-weight-semi-bold mb-4">${{ products.price }}</h3>
+                    <p class="mb-4">{{ products.observation }}</p>
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
                         <form>
@@ -329,62 +331,28 @@
             <div class="col">
                 <div class="bg-light p-30">
                     <div class="nav nav-tabs mb-4">
-                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Descrição</a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews ({{ products.review_person_set.count}})</a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-                            <h4 class="mb-3">Product Description</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                            <h4 class="mb-3">Descrição do produto: {{ products.name }}</h4>
+                            <p>{{ products.description }}</p>
                         </div>
-                        <div class="tab-pane fade" id="tab-pane-2">
-                            <h4 class="mb-3">Additional Information</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
-                                </div>
-                            </div>
-                        </div>
+
+                        
+                    {% for review in products.review_person_set.all %}
+
                         <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">1 review for "Product Name"</h4>
+                                    <h4 class="mb-4">Review do produto "{{ products.name }}"</h4>
                                     <div class="media mb-4">
-                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        
+                                        {% avatar review.person  65 alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;" %}
+
                                         <div class="media-body">
-                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
+                                            <h6>{{ review.person }}<small> - <i>{{ review.date  }}</i></small></h6>
                                             <div class="text-primary mb-2">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
@@ -392,7 +360,7 @@
                                                 <i class="fas fa-star-half-alt"></i>
                                                 <i class="far fa-star"></i>
                                             </div>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                            <p>{{ review.text }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -429,6 +397,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}">Próxima</a>
+                        {% endif %}
+
+                    {% endfor %}
+
                     </div>
                 </div>
             </div>

@@ -7,6 +7,9 @@ urlpatterns = [
     #Admin
     path('admin/', admin.site.urls),
 
+    #Avatar
+    path('avatar/', include('avatar.urls')),
+
     #Allauth
     path('accounts/', include('allauth.urls')),
 
@@ -17,13 +20,13 @@ urlpatterns = [
     path("email/", include('email_send.urls')),
 
     #Cart
-    path('cart', include('cart.urls')),
+    path('cart/', include('cart.urls')),
 
     #Checkout
-    path('checkout', include('checkout.urls')),
+    path('checkout/', include('checkout.urls')),
 
     #Detail
-    path('detail', include('detail.urls')),
+    path('detalhes/', include('detail.urls'), ),
 
     #Shop
     #Contact

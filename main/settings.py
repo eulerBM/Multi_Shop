@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    #Avatar
+    'avatar',
+
+
     #Django Allauth
     'allauth',
     'allauth.account',
@@ -177,7 +181,6 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Mensagens
-
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
@@ -187,3 +190,7 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+# Django Avatar
+AVATAR_MAX_SIZE = 1024 * 1024
+AVATAR_MAX_AVATARS_PER_USER = 1
