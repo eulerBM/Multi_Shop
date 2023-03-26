@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load avatar_tags %}
+
 <html lang="pt-br">
 
 <head>
@@ -26,10 +27,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="shortcut icon" href="https://em-content.zobj.net/thumbs/120/apple/325/teddy-bear_1f9f8.png" type="image/x-icon">
 
+    <link href=" {% static 'css/datail.css' %}" rel="stylesheet">
+
  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    
 
-
-    <!-- Customized Bootstrap Stylesheet -->
+    
     
 </head>
 
@@ -236,7 +240,7 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div>
-                        <small class="pt-1">(99 Reviews)</small>
+                        <small class="pt-1">({{ products.review_person_set.count }})</small> 
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">${{ products.price }}</h3>
                     <p class="mb-4">{{ products.observation }}</p>
@@ -341,7 +345,7 @@
                         </div>
 
                         
-                    {% for review in products.review_person_set.all %}
+                    {% for review in posts %}
 
                         <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
@@ -365,10 +369,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">Leave a review</h4>
-                                    <small>Your email address will not be published. Required fields are marked *</small>
+                                    <h4 class="mb-4">Deixe um comentário</h4>
+                                    <small>OBS: Faça login/Cadastro antes de deixar um comentario *</small>
                                     <div class="d-flex my-3">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <p class="mb-0 mr-2">Avaliação * :</p>
                                         <div class="text-primary">
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
@@ -377,32 +381,36 @@
                                             <i class="far fa-star"></i>
                                         </div>
                                     </div>
-                                    <form>
+                                    <form action="{% url 'review_user' products.id %}" method='GET'>
                                         <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Your Name *</label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Your Email *</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <label for="message">Sua Review *</label>
+                                            <textarea name="text" id="message" cols="30" rows="5" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                            <input type="submit" value="Enviar Comentario" class="btn btn-primary px-3" >
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
 
+                        {% if posts.has_previous %}
+                            
+                            <a id="anterior" href="?page={{ posts.previous_page_number }}">Anterior</a>
+                            <a>Próxima</a>
                         
+                        {% endif %}
+    
+        
+    
                         {% if posts.has_next %}
-                            <a href="?page={{ posts.next_page_number }}">Próxima</a>
+                            <a>Anterior</a>
+                            <a id="proxima" href="?page={{ posts.next_page_number }}">Próxima</a>
+                            
+
                         {% endif %}
 
+                        
                     {% endfor %}
 
                     </div>
@@ -587,15 +595,18 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
-                        <form action="">
+                        <p>Receba descontos e novidades direto no e-mail</p>
+
+                        <form action="{% url 'newsletter' %}" method='GET'>
+                            {% csrf_token %}  
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
+                                <input type="text" class="form-control" placeholder="Seu Email">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
+                                    <button class="btn btn-primary">Cadastrar</button>
                                 </div>
                             </div>
                         </form>
+
                         <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
