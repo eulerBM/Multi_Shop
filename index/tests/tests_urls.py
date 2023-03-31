@@ -19,10 +19,13 @@ class Teste_urls(TestCase):
     def test_url_name_add_car(self):
         response = self.client.get(reverse('add_car', args=[6]))
         self.assertEqual(response.status_code, 302)
-       
+                 
     def test_url_name_like_product(self):
         response = self.client.get(reverse('like_product', args=[5]))
         self.assertEqual(response.status_code, 302)
+        
+
+
         
 
        
