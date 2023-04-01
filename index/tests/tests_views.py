@@ -8,7 +8,7 @@ class teste_views_index(TestCase):
 
     def setUp(self):
 
-        produto = product.objects.create(
+        product.objects.create(
             name='pc',
             category= 'Computador',
             description='muito bom o pc',
