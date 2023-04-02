@@ -6,8 +6,8 @@ from django.contrib import messages
 
 # Pagina Inicial
 def index(request):
-    procutc_iten = product.objects.all()[:8]
-    procutc_recent = product.objects.order_by('-date')[:8]
+    procutc_iten = product.objects.filter(active=True)[:8]
+    procutc_recent = product.objects.order_by('-date').filter(active=True)[:8]
     like_filter = product.objects.filter(likes=request.user.id).count()
 
     try:
@@ -80,6 +80,24 @@ def like_product(request, id):
 
     finally:
         return redirect ('index')
+    
+@require_GET
+@login_required
+def update_product(request, id):
+
+    try:
+        get_produ = product.objects.get(id=id)
+        get_produ.active = False
+        get_produ.save()
+
+    except:
+        messages.error(request, "Não deu pra atualizar a lista" )
+
+    finally:
+        return redirect ('index')
+
+    
+    
         
 
 

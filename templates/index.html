@@ -347,7 +347,7 @@
 
                             <a class="btn btn-outline-dark btn-square" href="{% url 'like_product' products.id %}"><i class="far fa-heart"> </i></a>
 
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'update_product' products.id %}"><i class="fa fa-sync-alt"></i></a>
 
                             <a class="btn btn-outline-dark btn-square" href="{% url 'detail' products.id %}"><i class="fa fa-search"></i></a>
 
@@ -430,8 +430,8 @@
                                
                             <a class="btn btn-outline-dark btn-square" href="{% url 'add_car' product_recens.id %}"><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href="{% url 'like_product' product_recens.id %}"><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"> </i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'update_product' product_recens.id %}"><i class="fa fa-sync-alt"> </i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'detail' product_recens.id %}"><i class="fa fa-search"></i></a>
 
                         </div>
                     </div>
@@ -556,9 +556,9 @@
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
-                    by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    &copy; <a class="text-primary" href="#">Euler</a>. Todos os direitos reservados
+                    há
+                    <a class="text-primary" href="https://htmlcodex.com">Euler borges da motta</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">

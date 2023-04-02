@@ -21,6 +21,7 @@ class product(models.Model):
     stock = models.IntegerField(blank=False, default='0')
     image = models.ImageField(upload_to="image/", blank=False, default='image/')
     likes = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True )
+    active = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
