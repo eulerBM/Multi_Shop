@@ -189,7 +189,7 @@
                             </a>
                             <a href="" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"> {{ car_filter }} </span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;" id="carrinho"></span>
                             </a>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase">Economizar 20%</h6>
                         <h3 class="text-white mb-3"> Oferta especial</h3>
-                        <a href="" class="btn btn-primary">Compre agora</a>
+                        <a class="btn btn-primary" onclick="somar()" id="botao01">Compre agora</a>
                     </div>
                 </div>
                 <div class="product-offer mb-30" style="height: 200px;">
@@ -343,7 +343,10 @@
                         <img class="img-fluid w-100" src="{{ products.image.url }}" alt="" style="width: 40%; height: 15em;">
                         <div class="product-action">
 
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'add_car' products.id %}"><i class="fa fa-shopping-cart" ></i></a>
+                            <a class="btn btn-outline-dark btn-square"   onclick="get_id( '{{ products.id }}', '{{ request.user.id }}' )" id="add_"><i class="fa fa-shopping-cart" >teste</i></a>
+
+
+                            <a class="btn btn-outline-dark btn-square"  href="{% url 'add_car' products.id %}"><i class="fa fa-shopping-cart" ></i></a>
 
                             <a class="btn btn-outline-dark btn-square" href="{% url 'like_product' products.id %}"><i class="far fa-heart"> </i></a>
 
@@ -566,7 +569,9 @@
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+
+    <!-- JS proprios -->
+    <script src="{% static 'js/home.js' %}"></script>
 
 
     <!-- Back to Top -->

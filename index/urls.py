@@ -11,6 +11,10 @@ urlpatterns = [
     path('like/<int:id>', like_product, name='like_product'),
 
     #Atualizar produto
-    path('atualizar/<int:id>', update_product, name='update_product')
+    path('atualizar/<int:id>', update_product, name='update_product'),
+
+    #carrinho
+    path('carrin/', add_to_cart, name='carrin'),
+
     
 ]

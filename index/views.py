@@ -97,7 +97,35 @@ def update_product(request, id):
         return redirect ('index')
 
     
+
+from django.http import JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
+
+
+#Teste js
+
+@csrf_exempt
+def add_to_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        product_id = data['id']
+        user = data['request']
+
+        if not carrinho.objects.filter(car_user=user, car_product=product_id):
+        
+            product_get = product.objects.get(id=product_id)
+            carrinho_get = carrinho.objects.get(car_user=user)
+
+            carrinho_get.car_product.add(product_get)
+        
+        
+            return JsonResponse({'message': 'Produto adicionado ao carrinho com sucesso!'})
+
     
+    return JsonResponse({'error': 'Esse produto ja foi adicionado no carrinho'}, status=400)
+
+
         
 
 

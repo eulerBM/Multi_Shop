@@ -7,6 +7,9 @@ urlpatterns = [
     #Admin
     path('admin/', admin.site.urls),
 
+    #Pagamento
+    path('pagar/', include('payments.urls')), 
+
     #Avatar
     path('avatar/', include('avatar.urls')),
 

@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'checkout',
     'cart',
     'email_send',
-    
+
+    #Pagamento
+    'payments',    
 ]
 
 SITE_ID = 1
@@ -194,3 +196,9 @@ MESSAGE_TAGS = {
 # Django Avatar
 AVATAR_MAX_SIZE = 1024 * 1024
 AVATAR_MAX_AVATARS_PER_USER = 1
+
+
+# Stripe - Pagamento
+
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')

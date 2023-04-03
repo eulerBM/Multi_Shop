@@ -54,8 +54,19 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
+
+                            {% if request.user.is_authenticated %}
+
+                            <button class="dropdown-item" type="button">Olá, {{ request.user }}</button>
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_logout' %}">Sair</button></a>
+
+                            {% else %}
+                                
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_login' %}">Entrar</button></a>
+                            <button class="dropdown-item" type="button"> <a href="{% url 'account_signup' %}">Escrever-se</button></a>
+
+                            {% endif %}
+                            
                         </div>
                     </div>
                     <div class="btn-group mx-2">
