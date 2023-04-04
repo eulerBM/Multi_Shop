@@ -42,7 +42,7 @@ class review_person(models.Model):
 #Carrinho de compras
 class carrinho(models.Model):
     car_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    car_product = models.ManyToManyField(product, blank=True, null=True )
+    car_product = models.ManyToManyField(product, blank=True )
 
     def __str__(self):
         return f"Carrinho de {self.car_user}"

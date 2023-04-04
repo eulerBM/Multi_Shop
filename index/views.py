@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
-from index.models import product, carrinho
+from index.models import product, carrinho, User
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET,require_POST
 from django.contrib import messages 
+from django.http import JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Pagina Inicial
 def index(request):
     procutc_iten = product.objects.filter(active=True)[:8]
     procutc_recent = product.objects.order_by('-date').filter(active=True)[:8]
-    like_filter = product.objects.filter(likes=request.user.id).count()
 
     try:
         car_filter = carrinho.objects.get(car_user=request.user.id)
@@ -24,63 +27,44 @@ def index(request):
         'product': procutc_iten,
         'product_recen': procutc_recent,
         'car_filter': carrinho_filter,
-        'like': like_filter,
             
     }
  
     return render (request, 'index.html', context)
 
 
-
-@require_GET
+# Like no produto
 @login_required
-def add_car (request, id):
+@require_POST
+@csrf_exempt
+def like_product(request):
+    if request.method == 'POST':
 
-    try:
-        product_get = product.objects.get(id=id)
+        try:
+            data = json.loads(request.body)
+            id_ = data['id']
+            user = data['request']
 
-        carrinho_get = carrinho.objects.get(car_user=request.user)
-    
-    except:
-        messages.error(request, "Ocorreu um erro" )
-
-    else:
-
-        if carrinho.objects.filter(car_user=request.user, car_product=product_get):
-            messages.warning(request, f"{product_get} ja esta no carrinho!" )
-
+        except:
+            return JsonResponse({'message': 'Ocorreu um erro'})
+        
         else:
-            carrinho_get.car_product.add(product_get)
-            messages.success(request, f"{product_get}, adicionado com sucesso ao carrinho" )     
+            if product.objects.filter(id=id_, likes=user):
+                return JsonResponse({'message': 'Voce ja deu like nesse produto'})
+            
+            else:
+                produ = product.objects.get(id=id_)
+                user_get = User.objects.get(id=user)
+                produ.likes = user_get
+                produ.save()
+                print('voce deu like')
 
-    finally:
-        return redirect ('index')
-
-
-@require_GET
-@login_required
-def like_product(request, id):
-
-    try:
-        product_get = product.objects.get(id=id)
-
-    except:
-        messages.error(request, "Ocorreu um erro" )
-
-    else:
-        if product_get.likes == request.user:
-            product_get.likes = None
-            product_get.save()    
-            messages.info(request, f" Voce desfez o like no {product_get}" )
-
-        else:
-            product_get.likes = request.user
-            product_get.save()
-            messages.success(request, f"Like no produto {product_get}" )     
-
-    finally:
-        return redirect ('index')
+                return JsonResponse({'message': 'Like dado com sucesso'})
     
+    return JsonResponse({'error': 'O metodo nao foi POST'}, status=400)
+
+
+# Atualiza o produto da pagina
 @require_GET
 @login_required
 def update_product(request, id):
@@ -96,34 +80,36 @@ def update_product(request, id):
     finally:
         return redirect ('index')
 
-    
 
-from django.http import JsonResponse
-import json
-from django.views.decorators.csrf import csrf_exempt
+# Adiociona o produto no carrinho
 
-
-#Teste js
-
+@require_POST
 @csrf_exempt
+@login_required
 def add_to_cart(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        product_id = data['id']
-        user = data['request']
 
-        if not carrinho.objects.filter(car_user=user, car_product=product_id):
-        
-            product_get = product.objects.get(id=product_id)
-            carrinho_get = carrinho.objects.get(car_user=user)
+        try:
+            data = json.loads(request.body)
+            product_id = data['id']
+            user = data['request']
 
-            carrinho_get.car_product.add(product_get)
+        except:
+            return JsonResponse({'message': 'Ocorreu um erro'})
         
-        
-            return JsonResponse({'message': 'Produto adicionado ao carrinho com sucesso!'})
-
+        else:
+            if carrinho.objects.filter(car_user=user, car_product=product_id):
+      
+                return JsonResponse({'message': 'Esse produto ja esta no carrinho'})
+            
+            else:
+                product_get = product.objects.get(id=product_id)
+                carrinho_get = carrinho.objects.get(car_user=user)
+                carrinho_get.car_product.add(product_get)
+            
+                return JsonResponse({'message': 'Produto adicionado ao carrinho com sucesso!'})
     
-    return JsonResponse({'error': 'Esse produto ja foi adicionado no carrinho'}, status=400)
+    return JsonResponse({'error': 'Só aceitamos metodos POST'}, status=400)
 
 
         

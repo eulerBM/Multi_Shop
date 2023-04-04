@@ -185,7 +185,7 @@
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{ like }}</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;" id="like_01"></span>
                             </a>
                             <a href="" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
@@ -343,14 +343,11 @@
                         <img class="img-fluid w-100" src="{{ products.image.url }}" alt="" style="width: 40%; height: 15em;">
                         <div class="product-action">
 
-                            <a class="btn btn-outline-dark btn-square"   onclick="get_id( '{{ products.id }}', '{{ request.user.id }}' )" id="add_"><i class="fa fa-shopping-cart" >teste</i></a>
+                            <a class="btn btn-outline-dark btn-square" onclick="get_id( '{{ products.id }}', '{{ request.user.id }}' )" id="add_"><i class="fa fa-shopping-cart" ></i></a>
 
+                            <a class="btn btn-outline-dark btn-square" onclick="like('{{  products.id }}', '{{ request.user.id }}' )"><i class="far fa-heart"></i></a>
 
-                            <a class="btn btn-outline-dark btn-square"  href="{% url 'add_car' products.id %}"><i class="fa fa-shopping-cart" ></i></a>
-
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'like_product' products.id %}"><i class="far fa-heart"> </i></a>
-
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'update_product' products.id %}"><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{% url 'update_product' products.id %}"><i class="fa fa-sync-alt"> </i></a>
 
                             <a class="btn btn-outline-dark btn-square" href="{% url 'detail' products.id %}"><i class="fa fa-search"></i></a>
 
@@ -429,12 +426,14 @@
                         <img class="img-fluid w-100" src="{{ product_recens.image.url }}" alt="" style="width: 40%; height: 15em;">
                         <div class="product-action">
 
-                            
+                            <a class="btn btn-outline-dark btn-square" onclick="get_id( '{{  product_recens.id }}', '{{ request.user.id }}' )" id="add_"><i class="fa fa-shopping-cart" ></i></a>
                                
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'add_car' product_recens.id %}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'like_product' product_recens.id %}"><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" onclick="like('{{  product_recens.id }}', '{{ request.user.id }}' )"><i class="far fa-heart"></i></a>
+
                             <a class="btn btn-outline-dark btn-square" href="{% url 'update_product' product_recens.id %}"><i class="fa fa-sync-alt"> </i></a>
+
                             <a class="btn btn-outline-dark btn-square" href="{% url 'detail' product_recens.id %}"><i class="fa fa-search"></i></a>
+
 
                         </div>
                     </div>
