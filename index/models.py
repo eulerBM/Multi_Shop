@@ -13,15 +13,28 @@ class product(models.Model):
         ('Computador', 'Computador'),
 
     )
-    name = models.CharField(max_length=50, blank=False)
-    category = models.CharField(choices=choices_status, max_length=20 ,default='Categoria')
-    description = models.TextField(max_length=250, blank=False)
-    observation = models.TextField(max_length=150, blank=False)
-    price = models.FloatField(blank=False)
-    stock = models.IntegerField(blank=False, default='0')
+    choices_size = (
+        ('Não informar', 'Não informar'),
+        ('pp', 'pp'),
+        ('p', 'p'),
+        ('m', 'm'),
+        ('g', 'g'),
+        ('gg', 'gg'),
+        ('xgg', 'xgg'), 
+
+    )
+
+    name = models.CharField(max_length=50, blank=False, verbose_name='Nome')
+    category = models.CharField(choices=choices_status, max_length=20 ,default='Categoria', verbose_name='Categoria')
+    description = models.TextField(max_length=250, blank=False, verbose_name='descrição')
+    observation = models.TextField(max_length=150, blank=False, verbose_name='Observação')
+    price = models.FloatField(blank=False, verbose_name='Preço')
+    stock = models.IntegerField(blank=False, default='0', verbose_name='Estoque')
     image = models.ImageField(upload_to="image/", blank=False, default='image/')
     likes = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True )
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True, verbose_name='Situação')
+    color = models.CharField(blank=False, max_length=20, default='Não informar')
+    size = models.CharField(choices=choices_size, max_length=13 ,default='size', blank=False, verbose_name='Tamanho')
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
