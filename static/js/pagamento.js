@@ -25,3 +25,4 @@ fetch("/pagar/config/")
     });
   });
 });
+
