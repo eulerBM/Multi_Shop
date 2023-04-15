@@ -17,7 +17,6 @@ def stripe_config(request):
     
 @csrf_exempt
 def create_checkout_session(request):
-    if request.method == 'GET':
         domain_url = 'http://localhost:8000/pagar'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
@@ -28,11 +27,10 @@ def create_checkout_session(request):
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=[
-                    {
-                        
+                    {   
+                        'price':'price_1MsKXsE3RPdMzT3CGMuQAGeX',
                         'quantity': 1,
                         
-                        'price': 2000,
                     }
                 ]
             )
