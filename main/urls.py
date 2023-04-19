@@ -29,10 +29,13 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
 
     #Detail
-    path('detalhes/', include('detail.urls'), ),
+    path('detalhes/', include('detail.urls')),
 
     #Shop
+    path('shop/', include('shop.urls')),
+
     #Contact
+    path('contact/', include('contact.urls')),
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
