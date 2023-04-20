@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'email_send',
 
     #Pagamento
-    'payments',    
+    'payments',
+
+    #widget
+    'widget_tweaks',    
 ]
 
 SITE_ID = 1
