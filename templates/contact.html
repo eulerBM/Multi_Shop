@@ -199,12 +199,12 @@
                 <div class="contact-form bg-light p-30">
                     <div id="success"></div>
 
-                    <form action="{% url 'enviar' %}" name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
                     {% csrf_token %}
                         
                         <div class="control-group">
 
-                            {% render_field form.name type="text" class="form-control" id="name" placeholder="Seu nome" name="name"   %}
+                            {% render_field form.name type="text" class="form-control" id="name" placeholder="Seu nome" name="name" %}
 
                             <p class="help-block text-danger"></p>
                         </div>
@@ -255,8 +255,8 @@
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
+                <h5 class="text-secondary text-uppercase mb-4">Entrar em contato</h5>
+                <p class="mb-4">A página de "Entrar em Contato" é uma forma de se comunicar com a empresa, fornecer feedbacks, tirar dúvidas e obter informações adicionais.</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
@@ -287,16 +287,20 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
-                        <form action="">
+                        <p>Receba descontos e novidades direto no e-mail</p>
+
+                        <form action="{% url 'newsletter' %}" method='GET'>
+                            {% csrf_token %}
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
+                                <input type="text" class="form-control" placeholder="Seu Email" name='email_user'>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
+                                    <button class="btn btn-primary">Cadastrar</button>
                                 </div>
                             </div>
+
                         </form>
-                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
+
+                        <h6 class="text-secondary text-uppercase mt-4 mb-3">SIGA-NOS</h6>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>

@@ -22,6 +22,6 @@ def email_newsletter(request):
     Email.attach_alternative(html_content, 'text/html')
     Email.send()
 
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
