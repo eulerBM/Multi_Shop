@@ -34,10 +34,10 @@
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="">Contact</a>
-                    <a class="text-body mr-3" href="">Help</a>
-                    <a class="text-body mr-3" href="">FAQs</a>
+                    <a class="text-body mr-3" href="">Sobre</a>
+                    <a class="text-body mr-3" href="">Contato</a>
+                    <a class="text-body mr-3" href="">Ajuda</a>
+                    <a class="text-body mr-3" href="">Pergu.. frequentes</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -45,12 +45,25 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Minha Conta</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Entrar</button>
-                            <button class="dropdown-item" type="button">Inscrever-se</button>
+
+                            
+                            {% if request.user.is_authenticated %}
+
+                            <button class="dropdown-item" type="button">Olá, {{ request.user }}</button>
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_logout' %}">Sair</button></a>
+
+                            {% else %}
+                                
+                            <button class="dropdown-item"  type="button"> <a href="{% url 'account_login' %}">Entrar</button></a>
+                            <button class="dropdown-item" type="button"> <a href="{% url 'account_signup' %}">Escrever-se</button></a>
+
+                            {% endif %}
+                            
+
                         </div>
                     </div>
                     <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">BRL</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">EUR</button>
                             <button class="dropdown-item" type="button">GBP</button>
@@ -58,7 +71,7 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">PT-BR</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">FR</button>
                             <button class="dropdown-item" type="button">AR</button>
@@ -111,7 +124,7 @@
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
+                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categorias</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
@@ -149,9 +162,9 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <a href="detail.html" class="nav-item nav-link">Detalhes do item</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Paginas <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
@@ -264,27 +277,41 @@
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
+                        <h5 class="text-secondary text-uppercase mb-4">Compra rápida</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Principal</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nossa loja</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Detalhes da loja</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Carrinho de compras</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Confira</a>
+                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contate-nos</a>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+
+                    {% if request.user.is_authenticated %}
+
+                        <div class="col-md-4 mb-5">
+                            <h5 class="text-secondary text-uppercase mb-4">Minha conta</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="{% url 'account_logout' %}"><i class="fa fa-angle-right mr-2"></i>Sair da conta</a>
+                                <a class="text-secondary mb-2" href="{% url 'account_change_password' %}"><i class="fa fa-angle-right mr-2"></i>Alterar senha</a>
+                                <a class="text-secondary mb-2" href="{% url 'account_email' %}"><i class="fa fa-angle-right mr-2"></i>E-mail</a>
+                                <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Meus contatos</a>
+                               
+                            </div>
                         </div>
-                    </div>
+
+                    {% else %}
+                        <div class="col-md-4 mb-5">
+                            <h5 class="text-secondary text-uppercase mb-4">Minha conta</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="{% url 'account_signup' %}"><i class="fa fa-angle-right mr-2"></i>Criar uma conta</a>
+                            </div>
+                        </div>
+
+
+                    {% endif %}
+
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
                         <p>Receba descontos e novidades direto no e-mail</p>
@@ -314,9 +341,9 @@
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
+                    &copy; <a class="text-primary" href="#">Euler</a>. Todos os direitos reservados
                     by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    <a class="text-primary" href="#">Euler borges da motta</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
