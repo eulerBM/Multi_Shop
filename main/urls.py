@@ -34,7 +34,7 @@ urlpatterns = [
     #Shop
     path('shop/', include('shop.urls')),
 
-    #Contact
+    #Contact - feito
     path('contact/', include('contact.urls')),
     
 

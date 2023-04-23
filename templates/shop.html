@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>MultiShop</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -18,6 +18,7 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="https://em-content.zobj.net/thumbs/120/apple/325/teddy-bear_1f9f8.png" type="image/x-icon">
 
     <!-- Libraries Stylesheet -->
     <link href=" {% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
@@ -33,23 +34,33 @@
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="">Contact</a>
-                    <a class="text-body mr-3" href="">Help</a>
-                    <a class="text-body mr-3" href="">FAQs</a>
+                    <a class="text-body mr-3" href="">Sobre</a>
+                    <a class="text-body mr-3" href="">Contato</a>
+                    <a class="text-body mr-3" href="">Ajuda</a>
+                    <a class="text-body mr-3" href="">Pergu.. frequentes</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Minha Conta</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
+
+                            {% if request.user.is_authenticated %}
+
+                                <button class="dropdown-item" type="button">Olá, {{ request.user }}</button>
+                                <button class="dropdown-item"  type="button"> <a href="{% url 'account_logout' %}">Sair</button></a>
+
+                            {% else %}
+                                
+                                <button class="dropdown-item"  type="button"> <a href="{% url 'account_login' %}">Entrar</button></a>
+                                <button class="dropdown-item" type="button"> <a href="{% url 'account_signup' %}">Escrever-se</button></a>
+    
+                            {% endif %}
                         </div>
                     </div>
                     <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">BRL</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">EUR</button>
                             <button class="dropdown-item" type="button">GBP</button>
@@ -57,7 +68,7 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">PT-BR</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">FR</button>
                             <button class="dropdown-item" type="button">AR</button>
@@ -87,7 +98,7 @@
             <div class="col-lg-4 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Pesquisar produtos">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -97,7 +108,7 @@
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Customer Service</p>
+                <p class="m-0">Atendimento ao Cliente</p>
                 <h5 class="m-0">+012 345 6789</h5>
             </div>
         </div>
@@ -148,15 +159,15 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="shop.html" class="nav-item nav-link active">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <a href="detail.html" class="nav-item nav-link">Detalhes do item</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Paginas <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="cart.html" class="dropdown-item">Carrinho de compras</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="contact.html" class="nav-item nav-link">Contato</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
