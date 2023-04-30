@@ -47,3 +47,4 @@ def sucess(request):
 def cancel(request):
     return render (request, 'pagamento/cancel.html')
 
+

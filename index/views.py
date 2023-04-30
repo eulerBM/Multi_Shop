@@ -19,8 +19,6 @@ def index(request):
 
     except:
         carrinho_filter = int(0)
-    
-    
          
     context = {
 

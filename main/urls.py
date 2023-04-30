@@ -16,10 +16,10 @@ urlpatterns = [
     #Allauth
     path('accounts/', include('allauth.urls')),
 
-    #Index
+    #Index - feito
     path('', include('index.urls')),
 
-    #Email
+    #Email - feito
     path("email/", include('email_send.urls')),
 
     #Cart
