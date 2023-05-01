@@ -28,7 +28,7 @@ urlpatterns = [
     #Checkout
     path('checkout/', include('checkout.urls')),
 
-    #Detail
+    #Detail - feito
     path('detalhes/', include('detail.urls')),
 
     #Shop

@@ -23,6 +23,16 @@ class product(models.Model):
         ('xgg', 'xgg'), 
 
     )
+    choices_color = (
+        ('Não informar', 'Não informar'),
+        ('Preto', 'Preto'),
+        ('Branco', 'Branco'),
+        ('Vermelho', 'Vermelho'),
+        ('Azul', 'Azul'),
+        ('Verde', 'Verde'),
+        
+
+    )
 
     name = models.CharField(max_length=50, blank=False, verbose_name='Nome')
     category = models.CharField(choices=choices_status, max_length=20 ,default='Categoria', verbose_name='Categoria')
@@ -33,7 +43,7 @@ class product(models.Model):
     image = models.ImageField(upload_to="image/", blank=False, default='image/')
     likes = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True )
     active = models.BooleanField(default=True, verbose_name='Situação')
-    color = models.CharField(blank=False, max_length=20, default='Não informar')
+    color = models.CharField(choices=choices_color, blank=False, max_length=15, default='Não informar')
     size = models.CharField(choices=choices_size, max_length=13 ,default='size', blank=False, verbose_name='Tamanho')
     date = models.DateTimeField(auto_now_add=True)
 

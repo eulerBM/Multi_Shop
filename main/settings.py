@@ -185,6 +185,8 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
+
 # Mensagens
 from django.contrib.messages import constants as messages
 
