@@ -15,6 +15,8 @@ def shop (request):
         else:
             products = product.objects.all()
 
+        print(request.GET.get)
+
         colors = {
         'black': color.filter(color='Preto'),
         'white': color.filter(color='Branco'),

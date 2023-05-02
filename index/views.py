@@ -27,6 +27,9 @@ def index(request):
         'car_filter': carrinho_filter,
             
     }
+
+    key = request.session.get('email')
+    print(request.session.session_key) 
  
     return render (request, 'index.html', context)
 

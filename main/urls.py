@@ -4,16 +4,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    #Admin
+    #Admin - feito
     path('admin/', admin.site.urls),
 
-    #Pagamento
+    #Pagamento - feito
     path('pagar/', include('payments.urls')), 
 
-    #Avatar
+    #Avatar - feito
     path('avatar/', include('avatar.urls')),
 
-    #Allauth
+    #Allauth - feito
     path('accounts/', include('allauth.urls')),
 
     #Index - feito
@@ -21,12 +21,6 @@ urlpatterns = [
 
     #Email - feito
     path("email/", include('email_send.urls')),
-
-    #Cart
-    path('cart/', include('cart.urls')),
-
-    #Checkout
-    path('checkout/', include('checkout.urls')),
 
     #Detail - feito
     path('detalhes/', include('detail.urls')),

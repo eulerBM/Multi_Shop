@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'shop',
     'detail',
     'contact',
-    'checkout',
-    'cart',
     'email_send',
 
     #Pagamento
