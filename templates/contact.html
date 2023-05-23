@@ -164,7 +164,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="index.html" class="nav-item nav-link">Principal</a>
                             <a href="shop.html" class="nav-item nav-link">Shop</a>
                             <a href="detail.html" class="nav-item nav-link">Detalhes do item</a>
                             <div class="nav-item dropdown">
@@ -219,9 +219,9 @@
                     <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
                     {% csrf_token %}
                         
-                        <div class="control-group">
+                        <div class="control-group">            
 
-                            {% render_field form.name type="text" class="form-control" id="name" placeholder="Seu nome" name="name" %}
+                            {% render_field form.name type="text" class="form-control" id="name" placeholder="Seu nome" name="name"  %} 
 
                             <p class="help-block text-danger"></p>
                         </div>

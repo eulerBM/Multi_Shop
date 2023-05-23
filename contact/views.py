@@ -6,16 +6,22 @@ def contact (request):
 
     if request.method == 'GET':
 
+        form = contact_form()
+
         if request.user.is_authenticated:
             like = product.objects.filter(likes=request.user).count()
             carrin = carrinho.objects.get(car_user=request.user.id).car_product.count()
+
+            form.fields['name'].initial = request.user.first_name
+            form.fields['email'].initial = request.user.email
+
 
         else:
             like = 0
             carrin = 0
 
         context = {
-        'form': contact_form(),
+        'form': form,
         'like': like,
         'carrin': carrin,
         }
